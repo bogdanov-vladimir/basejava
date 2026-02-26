@@ -4,9 +4,9 @@ import java.util.Arrays;
  * Array based storage for Resumes
  */
 public class ArrayStorage {
-    private int size = 0;
-    private final int CAPACITY = 10000;
+    private final static int CAPACITY = 10000;
     Resume[] storage = new Resume[CAPACITY];
+    private int size = 0;
 
     void clear() {
         for (int i = 0; i < size; i++) {
