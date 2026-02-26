@@ -5,8 +5,8 @@ import java.util.Arrays;
  */
 public class ArrayStorage {
     private int size = 0;
-    private final int MAX_COUNT = 10000;
-    Resume[] storage = new Resume[MAX_COUNT];
+    private final int CAPACITY = 10000;
+    Resume[] storage = new Resume[CAPACITY];
 
     void clear() {
         for (int i = 0; i < size; i++) {
@@ -17,7 +17,7 @@ public class ArrayStorage {
     }
 
     void save(Resume r) {
-        if (size < MAX_COUNT) {
+        if (size < CAPACITY) {
             storage[size++] = r;
         }
     }
@@ -35,12 +35,8 @@ public class ArrayStorage {
     void delete(String uuid) {
         for (int i = 0; i < size; i++) {
             if (storage[i].toString().equals(uuid)) {
-                storage[i] = null;
-
-                for (int j = i; j < size; j++) {
-                    storage[j] = storage[j + 1];
-                }
-                size--;
+                storage[i] = storage[--size];
+                storage[size] = null;
                 break;
             }
         }
@@ -50,7 +46,7 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     Resume[] getAll() {
-        return Arrays.copyOfRange(storage, 0, size);
+        return Arrays.copyOf(storage, size);
     }
 
     int size() {
