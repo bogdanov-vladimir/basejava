@@ -1,3 +1,6 @@
+import com.urise.webapp.model.Resume;
+import com.urise.webapp.storage.ArrayStorage;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -32,12 +35,16 @@ public class MainArray {
                     break;
                 case "save":
                     r = new Resume();
-                    r.uuid = uuid;
+                    r.setUuid(uuid);
                     ARRAY_STORAGE.save(r);
                     printAll();
                     break;
                 case "delete":
                     ARRAY_STORAGE.delete(uuid);
+                    printAll();
+                    break;
+                case "update":
+                    ARRAY_STORAGE.update(uuid, uuid +"_upd");
                     printAll();
                     break;
                 case "get":
