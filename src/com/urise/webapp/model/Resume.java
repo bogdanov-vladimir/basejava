@@ -1,7 +1,5 @@
 package com.urise.webapp.model;
 
-import java.util.Objects;
-
 /**
  * Initial resume class
  */
@@ -9,11 +7,11 @@ public class Resume {
     // Unique identifier
     private String uuid;
 
-    public Resume() {};
+    public Resume() {}
 
     public Resume(String uuid) {
         this.uuid = uuid;
-    };
+    }
 
     public String getUuid() {
         return uuid;
