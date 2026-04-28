@@ -7,7 +7,6 @@ import com.urise.webapp.model.Resume;
  */
 public class ArrayStorage extends AbstractArrayStorage {
 
-
     protected int findIndex(String uuid) {
         for (int i = 0; i < size; i++) {
             if (storage[i].toString().equals(uuid)) {
@@ -19,15 +18,13 @@ public class ArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    public void save(Resume r) {
-        if (size < CAPACITY) {
-            int index = findIndex(r.getUuid());
+    public void saveTemplate(int index, Resume r) {
+        storage[size++] = r;
+    }
 
-            if (index < 0) {
-                storage[size++] = r;
-            } else {
-                System.out.println("Resume already exist.");
-            }
-        }
+    @Override
+    public void deleteTemplate(int index) {
+        storage[index] = storage[--size];
+        storage[size] = null;
     }
 }

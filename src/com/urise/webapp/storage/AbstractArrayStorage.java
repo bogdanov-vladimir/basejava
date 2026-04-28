@@ -40,10 +40,21 @@ public abstract class AbstractArrayStorage implements Storage {
         int index = findIndex(uuid);
 
         if (index >= 0) {
-            storage[index] = storage[--size];
-            storage[size] = null;
+            deleteTemplate(index);
         } else {
             System.out.println("Resume not found.");
+        }
+    }
+
+    public void save(Resume r) {
+        if (size < CAPACITY) {
+            int index = findIndex(r.getUuid());
+
+            if (index < 0) {
+                saveTemplate(index, r);
+            } else {
+                System.out.println("Resume already exist.");
+            }
         }
     }
 
@@ -55,7 +66,9 @@ public abstract class AbstractArrayStorage implements Storage {
         return size;
     }
 
-    public abstract void save(Resume r);
+    public abstract void saveTemplate(int index, Resume r);
+
+    public abstract void deleteTemplate(int index);
 
     protected abstract int findIndex(String uuid);
 }
