@@ -12,29 +12,16 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    public void saveTemplate(int binarySearchResume, Resume r) {
-        if (size == 0) {
-            storage[size++] = r;
-        } else {
-            int calculateIndex = -(binarySearchResume + 1);
-
-            if (calculateIndex == size) {
-                storage[calculateIndex] = r;
-                size++;
-                System.out.println(Arrays.toString(storage));
-                return;
-            }
-
-            System.arraycopy(storage, calculateIndex, storage, calculateIndex + 1, size + 1);
-            storage[calculateIndex] = r;
-            size++;
-        }
+    public void saveResume(int index, Resume r) {
+        int insertIndex = -index - 1;
+        System.arraycopy(storage, insertIndex, storage, insertIndex + 1, size + 1);
+        storage[insertIndex] = r;
 
         System.out.println(Arrays.toString(storage));
     }
 
     @Override
-    public void deleteTemplate(int index) {
-        System.arraycopy(storage, index + 1, storage, index, size--);
+    public void deleteResume(int index) {
+        System.arraycopy(storage, index + 1, storage, index, size);
     }
 }
