@@ -9,7 +9,7 @@ public abstract class AbstractArrayStorage implements Storage {
     Resume[] storage = new Resume[CAPACITY];
     protected int size = 0;
 
-    public void update(Resume resume) {
+    public final void update(Resume resume) {
         int index = findIndex(resume.getUuid());
 
         if (index >= 0) {
